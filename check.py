@@ -1,9 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""ตรวจช่อง YouTube หนึ่งรอบ แล้วแจ้งเตือนผ่าน ntfy (ออกแบบให้รันบน GitHub Actions)"""
 import json
 import os
-import re
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -22,7 +18,7 @@ def fetch(url):
 
 
 def notify(title, message, click=""):
-    data = {"topic": TOPIC, "title": title, "message": message, "tags": ["tv"]}
+    data = {"topic": TOPIC, "title": title, "message": message, "tags": ["tv"], "priority": 4}
     if click:
         data["click"] = click
     req = urllib.request.Request("https://ntfy.sh", data=json.dumps(data).encode("utf-8"),
